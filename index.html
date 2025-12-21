@@ -1,43 +1,240 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Mathan Kumar | Portfolio</title>
-  <link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mathan Kumar | Full Stack Developer</title>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
+
+    <style>
+        :root {
+            --primary-color: #2563eb;
+            --secondary-color: #111827;
+            --background-color: #f8fafc;
+            --text-color: #1f2937;
+            --white: #ffffff;
+            --font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body {
+            font-family: var(--font-family);
+            background: var(--background-color);
+            color: var(--text-color);
+        }
+
+        .container { max-width: 1100px; margin: auto; padding: 0 1.5rem; }
+        section { padding: 5rem 0; }
+        h1,h2,h3 { margin-bottom: 1rem; }
+
+        /* Header */
+        header {
+            background: var(--white);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,.1);
+            z-index: 100;
+        }
+
+        header .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 0;
+        }
+
+        .logo { font-weight: bold; font-size: 1.4rem; color: var(--secondary-color); }
+
+        nav ul { display: flex; list-style: none; }
+        nav li { margin-left: 1.5rem; }
+        nav a { color: var(--secondary-color); font-weight: 500; }
+
+        /* Hero */
+        .hero {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            text-align: center;
+            color: white;
+            background: linear-gradient(rgba(0,0,0,.6),rgba(0,0,0,.6)),
+            url('https://images.unsplash.com/photo-1517694712202-14dd9538aa97') center/cover;
+        }
+
+        .hero h1 { font-size: 3.2rem; }
+        .hero p { font-size: 1.4rem; margin: 1rem 0 2rem; }
+
+        .btn {
+            padding: .8rem 2rem;
+            background: var(--primary-color);
+            color: white;
+            border-radius: 6px;
+            display: inline-block;
+            margin: .5rem;
+        }
+
+        /* Skills */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit,minmax(250px,1fr));
+            gap: 1.5rem;
+        }
+
+        .skill-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 10px 25px rgba(0,0,0,.05);
+        }
+
+        /* Projects */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit,minmax(300px,1fr));
+            gap: 2rem;
+        }
+
+        .project-card {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 10px 25px rgba(0,0,0,.05);
+        }
+
+        .project-card img { width: 100%; height: 200px; object-fit: cover; }
+        .project-card div { padding: 1.5rem; }
+
+        /* Footer */
+        footer {
+            background: var(--secondary-color);
+            color: white;
+            text-align: center;
+            padding: 2rem 0;
+        }
+
+        footer a { color: white; margin: 0 .7rem; font-size: 1.5rem; }
+    </style>
 </head>
+
 <body>
 
-  <header>
-    <h1>Hi 👋 I'm Mathan Kumar</h1>
-    <p>PHP Laravel Developer | Frontend | Flutter Learner</p>
-  </header>
+<header>
+    <div class="container">
+        <div class="logo">Mathan Kumar</div>
+        <nav>
+            <ul>
+                <li><a href="#home">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#skills">Skills</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </div>
+</header>
 
-  <section>
-    <h2>About Me</h2>
-    <p>
-      I am a passionate web developer with experience in PHP, Laravel,
-      frontend technologies, and modern UI development.
-    </p>
-  </section>
+<section id="home" class="hero">
+    <div class="container">
+        <h1>Hi, I'm Mathan Kumar</h1>
+        <p>PHP Laravel Developer | Frontend | Flutter Learner</p>
+        <a href="#projects" class="btn">View Projects</a>
+        <a href="#contact" class="btn">Contact Me</a>
+    </div>
+</section>
 
-  <section>
-    <h2>Projects</h2>
-    <ul>
-      <li>Drop-in Class Management System</li>
-      <li>Laravel Admin Portal</li>
-      <li>Flutter Urban Rider App</li>
-    </ul>
-  </section>
+<section id="about">
+    <div class="container">
+        <h2>About Me</h2>
+        <p>
+            I am a passionate Full Stack Developer with hands-on experience in
+            PHP, Laravel, frontend technologies, and Flutter.
+            I enjoy building clean, scalable, and real-world applications.
+        </p>
+    </div>
+</section>
 
-  <section>
-    <h2>Contact</h2>
-    <p>Email: yourmail@gmail.com</p>
-    <p>GitHub: github.com/mathandevprojects</p>
-  </section>
+<section id="skills">
+    <div class="container">
+        <h2>My Skills</h2>
+        <div class="skills-grid">
+            <div class="skill-card">
+                <h3>Frontend</h3>
+                <ul>
+                    <li>HTML, CSS, JavaScript</li>
+                    <li>Bootstrap, Tailwind</li>
+                    <li>React (Basics)</li>
+                </ul>
+            </div>
+            <div class="skill-card">
+                <h3>Backend</h3>
+                <ul>
+                    <li>PHP</li>
+                    <li>Laravel</li>
+                    <li>REST APIs</li>
+                </ul>
+            </div>
+            <div class="skill-card">
+                <h3>Mobile & Tools</h3>
+                <ul>
+                    <li>Flutter</li>
+                    <li>Git & GitHub</li>
+                    <li>MySQL</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>
 
-  <footer>
+<section id="projects">
+    <div class="container">
+        <h2>Projects</h2>
+        <div class="projects-grid">
+
+            <div class="project-card">
+                <img src="https://via.placeholder.com/400x200">
+                <div>
+                    <h3>Drop-In Class Management</h3>
+                    <p>Laravel based system for scheduling & reminders</p>
+                    <a href="https://github.com/mathandevprojects" target="_blank">GitHub</a>
+                </div>
+            </div>
+
+            <div class="project-card">
+                <img src="https://via.placeholder.com/400x200">
+                <div>
+                    <h3>Admin Portal</h3>
+                    <p>Student, tutor & invoice management system</p>
+                </div>
+            </div>
+
+            <div class="project-card">
+                <img src="https://via.placeholder.com/400x200">
+                <div>
+                    <h3>Urban Rider App</h3>
+                    <p>Flutter ride booking app with Google Maps</p>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<section id="contact">
+    <div class="container">
+        <h2>Contact Me</h2>
+        <p>Email: mathank.dev@gmail.com</p>
+    </div>
+</section>
+
+<footer>
     <p>© 2025 Mathan Kumar</p>
-  </footer>
+    <div>
+        <a href="https://github.com/mathandevprojects"><i class="fab fa-github"></i></a>
+        <a href="#"><i class="fab fa-linkedin"></i></a>
+    </div>
+</footer>
 
 </body>
 </html>
