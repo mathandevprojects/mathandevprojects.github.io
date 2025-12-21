@@ -4,237 +4,604 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mathan Kumar | Full Stack Developer</title>
-
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
-
+    
     <style>
+        /* --- CSS Variables for Easy Theming --- */
         :root {
             --primary-color: #2563eb;
             --secondary-color: #111827;
             --background-color: #f8fafc;
             --text-color: #1f2937;
+            --light-gray: #e9ecef;
             --white: #ffffff;
             --font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
 
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        html { scroll-behavior: smooth; }
+        /* --- Global Styles & Resets --- */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
         body {
             font-family: var(--font-family);
-            background: var(--background-color);
+            line-height: 1.6;
+            background-color: var(--background-color);
             color: var(--text-color);
         }
 
-        .container { max-width: 1100px; margin: auto; padding: 0 1.5rem; }
-        section { padding: 5rem 0; }
-        h1,h2,h3 { margin-bottom: 1rem; }
+        .container {
+            max-width: 1100px;
+            margin: auto;
+            padding: 0 2rem;
+        }
 
-        /* Header */
-        header {
+        h1, h2, h3 {
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+
+        a {
+            text-decoration: none;
+            color: var(--primary-color);
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+        }
+
+        section {
+            padding: 5rem 0;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            color: var(--secondary-color);
+        }
+
+        /* --- Header & Navigation --- */
+        .main-header {
             background: var(--white);
+            padding: 1rem 0;
             position: fixed;
             width: 100%;
             top: 0;
-            box-shadow: 0 2px 10px rgba(0,0,0,.1);
-            z-index: 100;
+            left: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
         }
 
-        header .container {
+        .main-header .container {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 1rem 0;
         }
 
-        .logo { font-weight: bold; font-size: 1.4rem; color: var(--secondary-color); }
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--secondary-color);
+        }
 
-        nav ul { display: flex; list-style: none; }
-        nav li { margin-left: 1.5rem; }
-        nav a { color: var(--secondary-color); font-weight: 500; }
+        .main-nav ul {
+            display: flex;
+        }
 
-        /* Hero */
+        .main-nav ul li {
+            margin-left: 2rem;
+        }
+
+        .main-nav a {
+            color: var(--secondary-color);
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .main-nav a:hover {
+            color: var(--primary-color);
+        }
+
+        .hamburger {
+            display: none;
+            cursor: pointer;
+        }
+
+        /* --- Hero Section --- */
         .hero {
             height: 100vh;
             display: flex;
             align-items: center;
+            justify-content: center;
             text-align: center;
-            color: white;
-            background: linear-gradient(rgba(0,0,0,.6),rgba(0,0,0,.6)),
-            url('https://images.unsplash.com/photo-1517694712202-14dd9538aa97') center/cover;
+            color: var(--white);
+            background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('https://images.unsplash.com/photo-1467232004584-a241de8bcf5d?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwzNjUyOXwwfDF8c2VhcmNofDF8fGNvZGluZ3xlbnwwfHx8fDE2Njg5MTA1NzI&ixlib=rb-4.0.3&q=80&w=1920') no-repeat center center/cover;
         }
 
-        .hero h1 { font-size: 3.2rem; }
-        .hero p { font-size: 1.4rem; margin: 1rem 0 2rem; }
+        .hero-content h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .hero-content p {
+            font-size: 1.5rem;
+            margin-bottom: 2rem;
+        }
 
         .btn {
-            padding: .8rem 2rem;
-            background: var(--primary-color);
-            color: white;
-            border-radius: 6px;
             display: inline-block;
-            margin: .5rem;
+            padding: 0.8rem 2rem;
+            background: var(--primary-color);
+            color: var(--white);
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+            border-radius: 5px;
+            transition: background 0.3s ease;
         }
 
-        /* Skills */
+        .btn:hover {
+            background: #1d4ed8;
+        }
+        
+        .btn-secondary {
+            background: transparent;
+            border: 2px solid var(--white);
+            margin-left: 1rem;
+        }
+        .btn-secondary:hover {
+            background: var(--white);
+            color: var(--secondary-color);
+        }
+
+        /* --- About Section --- */
+        .about .container {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 2rem;
+            align-items: center;
+        }
+        
+        .about-img {
+            border-radius: 5px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+
+        /* --- Skills Section --- */
         .skills-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit,minmax(250px,1fr));
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
             gap: 1.5rem;
         }
 
         .skill-card {
-            background: white;
+            background: var(--white);
             padding: 2rem;
-            border-radius: 10px;
-            box-shadow: 0 10px 25px rgba(0,0,0,.05);
+            border-radius: 5px;
+            text-align: center;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .skill-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+        }
+        .skill-card h3 {
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+        }
+        .skill-card ul {
+            text-align: left;
+        }
+        .skill-card ul li {
+            padding: 0.3rem 0;
         }
 
-        /* Projects */
+        /* --- Projects Section --- */
         .projects-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit,minmax(300px,1fr));
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 2rem;
         }
 
         .project-card {
-            background: white;
-            border-radius: 10px;
+            background: var(--white);
+            border-radius: 5px;
             overflow: hidden;
-            box-shadow: 0 10px 25px rgba(0,0,0,.05);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            display: flex;
+            flex-direction: column;
+        }
+        .project-card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+        .project-content {
+            padding: 1.5rem;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+        .project-content h3 {
+            margin-bottom: 0.5rem;
+        }
+        .project-tech {
+            font-size: 0.9rem;
+            color: #6c757d;
+            margin-bottom: 1rem;
+        }
+        .project-links {
+            margin-top: auto;
+        }
+        .project-links a {
+            margin-right: 1rem;
         }
 
-        .project-card img { width: 100%; height: 200px; object-fit: cover; }
-        .project-card div { padding: 1.5rem; }
-
-        /* Footer */
-        footer {
-            background: var(--secondary-color);
-            color: white;
-            text-align: center;
+        /* --- Experience Section --- */
+        .timeline {
+            position: relative;
             padding: 2rem 0;
         }
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 2px;
+            height: 100%;
+            background: var(--primary-color);
+        }
+        .timeline-item {
+            position: relative;
+            width: 50%;
+            padding: 2rem;
+            background: var(--white);
+            border-radius: 5px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+        }
+        .timeline-item:nth-child(odd) {
+            left: 0;
+            text-align: right;
+        }
+        .timeline-item:nth-child(even) {
+            left: 50%;
+        }
+        .timeline-item::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            width: 20px;
+            height: 20px;
+            background: var(--white);
+            border: 4px solid var(--primary-color);
+            border-radius: 50%;
+            transform: translateY(-50%);
+            z-index: 1;
+        }
+        .timeline-item:nth-child(odd)::after {
+            right: -10px;
+        }
+        .timeline-item:nth-child(even)::after {
+            left: -10px;
+        }
+        
+        /* --- Contact Section --- */
+        .contact {
+            background: var(--secondary-color);
+            color: var(--white);
+            text-align: center;
+        }
+        .contact .section-title {
+            color: var(--white);
+        }
+        .contact-form {
+            max-width: 700px;
+            margin: auto;
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+        .contact-form input,
+        .contact-form textarea {
+            width: 100%;
+            padding: 1rem;
+            border: 1px solid #555;
+            background: #444;
+            color: var(--white);
+            border-radius: 5px;
+        }
+        .contact-form .btn {
+            background: var(--primary-color);
+            border: none;
+            cursor: pointer;
+        }
+        .contact-form .btn:hover {
+            background: #1d4ed8;
+        }
 
-        footer a { color: white; margin: 0 .7rem; font-size: 1.5rem; }
+        /* --- Footer --- */
+        .main-footer {
+            background: var(--secondary-color);
+            color: var(--white);
+            text-align: center;
+            padding: 2rem 0;
+            border-top: 1px solid #555;
+        }
+        .social-links a {
+            color: var(--white);
+            font-size: 1.5rem;
+            margin: 0 0.75rem;
+            transition: color 0.3s ease;
+        }
+        .social-links a:hover {
+            color: var(--primary-color);
+        }
+
+        /* --- Responsive Design --- */
+        @media(max-width: 768px) {
+            .main-nav ul {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background: var(--white);
+                flex-direction: column;
+                text-align: center;
+                box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            }
+            .main-nav ul.active {
+                display: flex;
+            }
+            .main-nav ul li {
+                margin: 1rem 0;
+            }
+
+            .hamburger {
+                display: block;
+            }
+
+            .hero-content h1 {
+                font-size: 2.5rem;
+            }
+            .hero-content p {
+                font-size: 1.2rem;
+            }
+
+            .about .container {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+
+            .timeline::before {
+                left: 31px;
+            }
+            .timeline-item {
+                width: 100%;
+                padding-left: 70px;
+                padding-right: 25px;
+                text-align: left;
+            }
+            .timeline-item:nth-child(even) {
+                left: 0;
+            }
+            .timeline-item::after {
+                left: 21px;
+            }
+        }
+
     </style>
 </head>
-
 <body>
 
-<header>
-    <div class="container">
-        <div class="logo">Mathan Kumar</div>
-        <nav>
-            <ul>
-                <li><a href="#home">Home</a></li>
-                <li><a href="#about">About</a></li>
-                <li><a href="#skills">Skills</a></li>
-                <li><a href="#projects">Projects</a></li>
-                <li><a href="#contact">Contact</a></li>
-            </ul>
-        </nav>
-    </div>
-</header>
-
-<section id="home" class="hero">
-    <div class="container">
-        <h1>Hi, I'm Mathan Kumar</h1>
-        <p>PHP Laravel Developer | Frontend | Flutter Learner</p>
-        <a href="#projects" class="btn">View Projects</a>
-        <a href="#contact" class="btn">Contact Me</a>
-    </div>
-</section>
-
-<section id="about">
-    <div class="container">
-        <h2>About Me</h2>
-        <p>
-            I am a passionate Full Stack Developer with hands-on experience in
-            PHP, Laravel, frontend technologies, and Flutter.
-            I enjoy building clean, scalable, and real-world applications.
-        </p>
-    </div>
-</section>
-
-<section id="skills">
-    <div class="container">
-        <h2>My Skills</h2>
-        <div class="skills-grid">
-            <div class="skill-card">
-                <h3>Frontend</h3>
-                <ul>
-                    <li>HTML, CSS, JavaScript</li>
-                    <li>Bootstrap, Tailwind</li>
-                    <li>React (Basics)</li>
+    <!-- Header -->
+    <header class="main-header">
+        <div class="container">
+            <a href="#" class="logo">Mathan Kumar</a>
+            <nav class="main-nav">
+                <ul id="nav-links">
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#skills">Skills</a></li>
+                    <li><a href="#projects">Projects</a></li>
+                    <li><a href="#experience">Experience</a></li>
+                    <li><a href="#contact">Contact</a></li>
                 </ul>
-            </div>
-            <div class="skill-card">
-                <h3>Backend</h3>
-                <ul>
-                    <li>PHP</li>
-                    <li>Laravel</li>
-                    <li>REST APIs</li>
-                </ul>
-            </div>
-            <div class="skill-card">
-                <h3>Mobile & Tools</h3>
-                <ul>
-                    <li>Flutter</li>
-                    <li>Git & GitHub</li>
-                    <li>MySQL</li>
-                </ul>
-            </div>
+                <div class="hamburger" id="hamburger">
+                    <i class="fas fa-bars fa-2x"></i>
+                </div>
+            </nav>
         </div>
-    </div>
-</section>
+    </header>
 
-<section id="projects">
-    <div class="container">
-        <h2>Projects</h2>
-        <div class="projects-grid">
+    <main>
+        <!-- Hero Section -->
+        <section id="home" class="hero">
+            <div class="hero-content">
+                <h1>Hi, I'm Mathan Kumar</h1>
+                <p>PHP Laravel Developer | Frontend | Flutter Learner</p>
+                <a href="#projects" class="btn">View My Work</a>
+                <a href="#contact" class="btn btn-secondary">Contact Me</a>
+            </div>
+        </section>
 
-            <div class="project-card">
-                <img src="https://via.placeholder.com/400x200">
+        <!-- About Section -->
+        <section id="about" class="about">
+            <div class="container">
+                <img src="https://i.ibb.co/61b8Q1P/placeholder-profile.png" alt="Profile Picture" class="about-img">
                 <div>
-                    <h3>Drop-In Class Management</h3>
-                    <p>Laravel based system for scheduling & reminders</p>
-                    <a href="https://github.com/mathandevprojects" target="_blank">GitHub</a>
+                    <h2>About Me</h2>
+                    <p>I am a passionate Full Stack Developer with 2 years of professional experience, specializing in PHP and Laravel. I have a strong foundation in frontend technologies and am actively expanding my skill set into mobile development with Flutter.</p>
+                    <p>I enjoy building clean, scalable, and real-world applications and am dedicated to continuous learning and problem-solving.</p>
                 </div>
             </div>
+        </section>
 
-            <div class="project-card">
-                <img src="https://via.placeholder.com/400x200">
-                <div>
-                    <h3>Admin Portal</h3>
-                    <p>Student, tutor & invoice management system</p>
+        <!-- Skills Section -->
+        <section id="skills" class="skills">
+            <div class="container">
+                <h2 class="section-title">My Skills</h2>
+                <div class="skills-grid">
+                    <div class="skill-card">
+                        <h3><i class="fas fa-laptop-code"></i> Frontend</h3>
+                        <ul>
+                            <li>HTML5 & CSS3</li>
+                            <li>JavaScript (ES6+)</li>
+                            <li>Bootstrap & Tailwind CSS</li>
+                            <li>React (Basics)</li>
+                        </ul>
+                    </div>
+                    <div class="skill-card">
+                        <h3><i class="fas fa-server"></i> Backend</h3>
+                        <ul>
+                            <li>PHP</li>
+                            <li>Laravel Framework</li>
+                            <li>RESTful APIs</li>
+                            <li>MySQL</li>
+                        </ul>
+                    </div>
+                    <div class="skill-card">
+                        <h3><i class="fas fa-mobile-alt"></i> Mobile & Tools</h3>
+                        <ul>
+                            <li>Flutter (Learning)</li>
+                            <li>Git & GitHub</li>
+                            <li>Agile & Scrum</li>
+                        </ul>
+                    </div>
                 </div>
             </div>
+        </section>
 
-            <div class="project-card">
-                <img src="https://via.placeholder.com/400x200">
-                <div>
-                    <h3>Urban Rider App</h3>
-                    <p>Flutter ride booking app with Google Maps</p>
+        <!-- Projects Section -->
+        <section id="projects" class="projects">
+            <div class="container">
+                <h2 class="section-title">Featured Projects</h2>
+                <div class="projects-grid">
+                    <div class="project-card">
+                        <img src="https://i.ibb.co/LQJbG1p/placeholder-project-1.jpg" alt="Project 1">
+                        <div class="project-content">
+                            <h3>Drop-In Class Management</h3>
+                            <p class="project-tech">Laravel, MySQL, Bootstrap</p>
+                            <p>A comprehensive system for scheduling classes, managing enrollments, and sending automated reminders to students.</p>
+                            <div class="project-links">
+                                <a href="https://github.com/mathandevprojects" target="_blank"><i class="fab fa-github"></i> Code</a>
+                                <a href="#" target="_blank"><i class="fas fa-external-link-alt"></i> Live Demo</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="project-card">
+                        <img src="https://i.ibb.co/hK4Xs9w/placeholder-project-2.jpg" alt="Project 2">
+                        <div class="project-content">
+                            <h3>Admin Portal</h3>
+                            <p class="project-tech">PHP, Laravel, Vue.js</p>
+                            <p>An internal portal for managing student records, tutor profiles, and generating invoices with advanced filtering and search capabilities.</p>
+                            <div class="project-links">
+                                <a href="#" target="_blank"><i class="fab fa-github"></i> Code</a>
+                                <a href="#" target="_blank"><i class="fas fa-external-link-alt"></i> Live Demo</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="project-card">
+                        <img src="https://i.ibb.co/68v1k2Y/placeholder-project-3.jpg" alt="Project 3">
+                        <div class="project-content">
+                            <h3>Urban Rider App</h3>
+                            <p class="project-tech">Flutter, Google Maps API</p>
+                            <p>A cross-platform mobile application for booking bike rides. Features real-time tracking, fare estimation, and secure payment integration.</p>
+                            <div class="project-links">
+                                <a href="#" target="_blank"><i class="fab fa-github"></i> Code</a>
+                                <a href="#" target="_blank"><i class="fas fa-external-link-alt"></i> Live Demo</a>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
+        </section>
 
+        <!-- Experience Section -->
+        <section id="experience" class="experience">
+            <div class="container">
+                <h2 class="section-title">My Experience</h2>
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <h3>Full Stack Developer</h3>
+                        <h4>Tech Solutions Inc.</h4>
+                        <p><em>Oct 2021 - Present</em></p>
+                        <ul>
+                            <li>Developed and maintained multiple client projects using Laravel and Vue.js.</li>
+                            <li>Designed and built RESTful APIs for mobile and web consumption.</li>
+                            <li>Collaborated with UI/UX designers to implement responsive and user-friendly interfaces.</li>
+                        </ul>
+                    </div>
+                    <div class="timeline-item">
+                        <h3>Junior PHP Developer</h3>
+                        <h4>Digital Agency Pro</h4>
+                        <p><em>Jun 2021 - Sep 2021</em></p>
+                        <ul>
+                            <li>Assisted in the development of custom WordPress and Laravel websites.</li>
+                            <li>Performed bug fixes and implemented new features based on client feedback.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact" class="contact">
+            <div class="container">
+                <h2 class="section-title">Get In Touch</h2>
+                <p>I am currently open for new opportunities. If you have a project in mind or would like to chat, feel free to send me a message!</p>
+                <!-- Replace 'your-form-id' with your actual Formspree ID -->
+                <form action="https://formspree.io/f/your-form-id" method="POST" class="contact-form">
+                    <input type="text" name="name" placeholder="Your Name" required>
+                    <input type="email" name="email" placeholder="Your Email" required>
+                    <textarea name="message" rows="7" placeholder="Your Message" required></textarea>
+                    <button type="submit" class="btn">Send Message</button>
+                </form>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="main-footer">
+        <div class="container">
+            <div class="social-links">
+                <a href="https://github.com/mathandevprojects" target="_blank"><i class="fab fa-github"></i></a>
+                <!-- Add your LinkedIn profile link here -->
+                <a href="#" target="_blank"><i class="fab fa-linkedin"></i></a>
+            </div>
+            <p>&copy; 2024 Mathan Kumar. All Rights Reserved.</p>
         </div>
-    </div>
-</section>
+    </footer>
 
-<section id="contact">
-    <div class="container">
-        <h2>Contact Me</h2>
-        <p>Email: mathank.dev@gmail.com</p>
-    </div>
-</section>
+    <script>
+        // Simple Mobile Menu Toggle
+        const hamburger = document.getElementById('hamburger');
+        const navLinks = document.getElementById('nav-links');
 
-<footer>
-    <p>© 2025 Mathan Kumar</p>
-    <div>
-        <a href="https://github.com/mathandevprojects"><i class="fab fa-github"></i></a>
-        <a href="#"><i class="fab fa-linkedin"></i></a>
-    </div>
-</footer>
+        hamburger.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+        });
+
+        // Close mobile menu when a link is clicked
+        document.querySelectorAll('.main-nav a').forEach(link => {
+            link.addEventListener('click', () => {
+                navLinks.classList.remove('active');
+            });
+        });
+    </script>
 
 </body>
 </html>
