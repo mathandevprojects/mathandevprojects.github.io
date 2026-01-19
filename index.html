@@ -1,607 +1,438 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mathan Kumar | Full Stack Developer</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
-    
-    <style>
-        /* --- CSS Variables for Easy Theming --- */
-        :root {
-            --primary-color: #2563eb;
-            --secondary-color: #111827;
-            --background-color: #f8fafc;
-            --text-color: #1f2937;
-            --light-gray: #e9ecef;
-            --white: #ffffff;
-            --font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        }
-
-        /* --- Global Styles & Resets --- */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        html {
-            scroll-behavior: smooth;
-        }
-
-        body {
-            font-family: var(--font-family);
-            line-height: 1.6;
-            background-color: var(--background-color);
-            color: var(--text-color);
-        }
-
-        .container {
-            max-width: 1100px;
-            margin: auto;
-            padding: 0 2rem;
-        }
-
-        h1, h2, h3 {
-            margin-bottom: 1rem;
-            font-weight: 600;
-        }
-
-        a {
-            text-decoration: none;
-            color: var(--primary-color);
-        }
-
-        ul {
-            list-style: none;
-        }
-
-        img {
-            max-width: 100%;
-            height: auto;
-        }
-
-        section {
-            padding: 5rem 0;
-        }
-
-        .section-title {
-            text-align: center;
-            font-size: 2.5rem;
-            margin-bottom: 3rem;
-            color: var(--secondary-color);
-        }
-
-        /* --- Header & Navigation --- */
-        .main-header {
-            background: var(--white);
-            padding: 1rem 0;
-            position: fixed;
-            width: 100%;
-            top: 0;
-            left: 0;
-            z-index: 1000;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-        }
-
-        .main-header .container {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .logo {
-            font-size: 1.5rem;
-            font-weight: bold;
-            color: var(--secondary-color);
-        }
-
-        .main-nav ul {
-            display: flex;
-        }
-
-        .main-nav ul li {
-            margin-left: 2rem;
-        }
-
-        .main-nav a {
-            color: var(--secondary-color);
-            font-weight: 500;
-            transition: color 0.3s ease;
-        }
-
-        .main-nav a:hover {
-            color: var(--primary-color);
-        }
-
-        .hamburger {
-            display: none;
-            cursor: pointer;
-        }
-
-        /* --- Hero Section --- */
-        .hero {
-            height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            color: var(--white);
-            background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('https://images.unsplash.com/photo-1467232004584-a241de8bcf5d?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwzNjUyOXwwfDF8c2VhcmNofDF8fGNvZGluZ3xlbnwwfHx8fDE2Njg5MTA1NzI&ixlib=rb-4.0.3&q=80&w=1920') no-repeat center center/cover;
-        }
-
-        .hero-content h1 {
-            font-size: 3.5rem;
-            margin-bottom: 1rem;
-        }
-
-        .hero-content p {
-            font-size: 1.5rem;
-            margin-bottom: 2rem;
-        }
-
-        .btn {
-            display: inline-block;
-            padding: 0.8rem 2rem;
-            background: var(--primary-color);
-            color: var(--white);
-            border: none;
-            cursor: pointer;
-            font-size: 1rem;
-            border-radius: 5px;
-            transition: background 0.3s ease;
-        }
-
-        .btn:hover {
-            background: #1d4ed8;
-        }
-        
-        .btn-secondary {
-            background: transparent;
-            border: 2px solid var(--white);
-            margin-left: 1rem;
-        }
-        .btn-secondary:hover {
-            background: var(--white);
-            color: var(--secondary-color);
-        }
-
-        /* --- About Section --- */
-        .about .container {
-            display: grid;
-            grid-template-columns: 1fr 2fr;
-            gap: 2rem;
-            align-items: center;
-        }
-        
-        .about-img {
-            border-radius: 5px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-        }
-
-        /* --- Skills Section --- */
-        .skills-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 1.5rem;
-        }
-
-        .skill-card {
-            background: var(--white);
-            padding: 2rem;
-            border-radius: 5px;
-            text-align: center;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-        .skill-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
-        }
-        .skill-card h3 {
-            color: var(--primary-color);
-            margin-bottom: 1rem;
-        }
-        .skill-card ul {
-            text-align: left;
-        }
-        .skill-card ul li {
-            padding: 0.3rem 0;
-        }
-
-        /* --- Projects Section --- */
-        .projects-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-        }
-
-        .project-card {
-            background: var(--white);
-            border-radius: 5px;
-            overflow: hidden;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
-            display: flex;
-            flex-direction: column;
-        }
-        .project-card img {
-            width: 100%;
-            height: 200px;
-            object-fit: cover;
-        }
-        .project-content {
-            padding: 1.5rem;
-            flex-grow: 1;
-            display: flex;
-            flex-direction: column;
-        }
-        .project-content h3 {
-            margin-bottom: 0.5rem;
-        }
-        .project-tech {
-            font-size: 0.9rem;
-            color: #6c757d;
-            margin-bottom: 1rem;
-        }
-        .project-links {
-            margin-top: auto;
-        }
-        .project-links a {
-            margin-right: 1rem;
-        }
-
-        /* --- Experience Section --- */
-        .timeline {
-            position: relative;
-            padding: 2rem 0;
-        }
-        .timeline::before {
-            content: '';
-            position: absolute;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 2px;
-            height: 100%;
-            background: var(--primary-color);
-        }
-        .timeline-item {
-            position: relative;
-            width: 50%;
-            padding: 2rem;
-            background: var(--white);
-            border-radius: 5px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
-        }
-        .timeline-item:nth-child(odd) {
-            left: 0;
-            text-align: right;
-        }
-        .timeline-item:nth-child(even) {
-            left: 50%;
-        }
-        .timeline-item::after {
-            content: '';
-            position: absolute;
-            top: 50%;
-            width: 20px;
-            height: 20px;
-            background: var(--white);
-            border: 4px solid var(--primary-color);
-            border-radius: 50%;
-            transform: translateY(-50%);
-            z-index: 1;
-        }
-        .timeline-item:nth-child(odd)::after {
-            right: -10px;
-        }
-        .timeline-item:nth-child(even)::after {
-            left: -10px;
-        }
-        
-        /* --- Contact Section --- */
-        .contact {
-            background: var(--secondary-color);
-            color: var(--white);
-            text-align: center;
-        }
-        .contact .section-title {
-            color: var(--white);
-        }
-        .contact-form {
-            max-width: 700px;
-            margin: auto;
-            display: flex;
-            flex-direction: column;
-            gap: 1rem;
-        }
-        .contact-form input,
-        .contact-form textarea {
-            width: 100%;
-            padding: 1rem;
-            border: 1px solid #555;
-            background: #444;
-            color: var(--white);
-            border-radius: 5px;
-        }
-        .contact-form .btn {
-            background: var(--primary-color);
-            border: none;
-            cursor: pointer;
-        }
-        .contact-form .btn:hover {
-            background: #1d4ed8;
-        }
-
-        /* --- Footer --- */
-        .main-footer {
-            background: var(--secondary-color);
-            color: var(--white);
-            text-align: center;
-            padding: 2rem 0;
-            border-top: 1px solid #555;
-        }
-        .social-links a {
-            color: var(--white);
-            font-size: 1.5rem;
-            margin: 0 0.75rem;
-            transition: color 0.3s ease;
-        }
-        .social-links a:hover {
-            color: var(--primary-color);
-        }
-
-        /* --- Responsive Design --- */
-        @media(max-width: 768px) {
-            .main-nav ul {
-                display: none;
-                position: absolute;
-                top: 100%;
-                left: 0;
-                width: 100%;
-                background: var(--white);
-                flex-direction: column;
-                text-align: center;
-                box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-            }
-            .main-nav ul.active {
-                display: flex;
-            }
-            .main-nav ul li {
-                margin: 1rem 0;
-            }
-
-            .hamburger {
-                display: block;
-            }
-
-            .hero-content h1 {
-                font-size: 2.5rem;
-            }
-            .hero-content p {
-                font-size: 1.2rem;
-            }
-
-            .about .container {
-                grid-template-columns: 1fr;
-                text-align: center;
-            }
-
-            .timeline::before {
-                left: 31px;
-            }
-            .timeline-item {
-                width: 100%;
-                padding-left: 70px;
-                padding-right: 25px;
-                text-align: left;
-            }
-            .timeline-item:nth-child(even) {
-                left: 0;
-            }
-            .timeline-item::after {
-                left: 21px;
-            }
-        }
-
-    </style>
+    <title>Mathan Kumar A - Full Stack Developer Portfolio</title>
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="assets/css/style.css">
 </head>
-<body>
 
+<body>
     <!-- Header -->
-    <header class="main-header">
+    <header>
         <div class="container">
-            <a href="#" class="logo">Mathan Kumar</a>
-            <nav class="main-nav">
-                <ul id="nav-links">
+            <nav>
+                <a href="#" class="logo">Mathan Kumar</a>
+                <ul class="nav-links">
                     <li><a href="#home">Home</a></li>
                     <li><a href="#about">About</a></li>
                     <li><a href="#skills">Skills</a></li>
-                    <li><a href="#projects">Projects</a></li>
                     <li><a href="#experience">Experience</a></li>
+                    <li><a href="#projects">Projects</a></li>
+                    <li><a href="#education">Education</a></li>
                     <li><a href="#contact">Contact</a></li>
                 </ul>
-                <div class="hamburger" id="hamburger">
-                    <i class="fas fa-bars fa-2x"></i>
+                <div class="menu-toggle">
+                    <i class="fas fa-bars"></i>
                 </div>
             </nav>
         </div>
     </header>
 
-    <main>
-        <!-- Hero Section -->
-        <section id="home" class="hero">
-            <div class="hero-content">
-                <h1>Hi, I'm Mathan Kumar</h1>
-                <p>PHP Laravel Developer | Frontend | Flutter Learner</p>
-                <a href="#projects" class="btn">View My Work</a>
-                <a href="#contact" class="btn btn-secondary">Contact Me</a>
-            </div>
-        </section>
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="container">
+            <div class="hero-content fade-in-up">
+                <div class="hero-text">
+                    <h1>Hi, I'm Mathan Kumar A</h1>
+                    <h2>Full Stack Developer</h2>
+                    <p>Creative and detail-oriented Web Developer with 1 year of hands-on experience in building
+                        responsive, scalable, and user-centric web applications. Proficient in both front-end and
+                        back-end development using technologies like PHP, Laravel, MySQL, JavaScript, and Bootstrap.</p>
+                    <div class="hero-buttons">
+                        <a href="#projects" class="btn btn-primary">
+                            <span>View My Work</span>
+                            <i class="fas fa-arrow-right"></i>
+                        </a>
+                        
+                        <a href="./assets/resume/Mathan_Kumar_FullStack_Developer.pdf" class="btn btn-secondary" target="_blank" download>
+                            <i class="fas fa-download"></i>
+                            <span>Download Resume</span>
+                        </a>
 
-        <!-- About Section -->
-        <section id="about" class="about">
-            <div class="container">
-                <img src="https://i.ibb.co/61b8Q1P/placeholder-profile.png" alt="Profile Picture" class="about-img">
-                <div>
-                    <h2>About Me</h2>
-                    <p>I am a passionate Full Stack Developer with 2 years of professional experience, specializing in PHP and Laravel. I have a strong foundation in frontend technologies and am actively expanding my skill set into mobile development with Flutter.</p>
-                    <p>I enjoy building clean, scalable, and real-world applications and am dedicated to continuous learning and problem-solving.</p>
-                </div>
-            </div>
-        </section>
-
-        <!-- Skills Section -->
-        <section id="skills" class="skills">
-            <div class="container">
-                <h2 class="section-title">My Skills</h2>
-                <div class="skills-grid">
-                    <div class="skill-card">
-                        <h3><i class="fas fa-laptop-code"></i> Frontend</h3>
-                        <ul>
-                            <li>HTML5 & CSS3</li>
-                            <li>JavaScript (ES6+)</li>
-                            <li>Bootstrap & Tailwind CSS</li>
-                            <li>React (Basics)</li>
-                        </ul>
-                    </div>
-                    <div class="skill-card">
-                        <h3><i class="fas fa-server"></i> Backend</h3>
-                        <ul>
-                            <li>PHP</li>
-                            <li>Laravel Framework</li>
-                            <li>RESTful APIs</li>
-                            <li>MySQL</li>
-                        </ul>
-                    </div>
-                    <div class="skill-card">
-                        <h3><i class="fas fa-mobile-alt"></i> Mobile & Tools</h3>
-                        <ul>
-                            <li>Flutter (Learning)</li>
-                            <li>Git & GitHub</li>
-                            <li>Agile & Scrum</li>
-                        </ul>
+                        <a href="#contact" class="btn btn-outline">
+                            <span>Contact Me</span>
+                            <i class="fas fa-envelope"></i>
+                        </a>
                     </div>
                 </div>
+                <div class="hero-image">
+                    <img src="./assets/images/madhan_profile.png" alt="Mathan Kumar" class="profile-img">
+                </div>
             </div>
-        </section>
+        </div>
+    </section>
 
-        <!-- Projects Section -->
-        <section id="projects" class="projects">
-            <div class="container">
-                <h2 class="section-title">Featured Projects</h2>
-                <div class="projects-grid">
-                    <div class="project-card">
-                        <img src="https://i.ibb.co/LQJbG1p/placeholder-project-1.jpg" alt="Project 1">
-                        <div class="project-content">
-                            <h3>Drop-In Class Management</h3>
-                            <p class="project-tech">Laravel, MySQL, Bootstrap</p>
-                            <p>A comprehensive system for scheduling classes, managing enrollments, and sending automated reminders to students.</p>
-                            <div class="project-links">
-                                <a href="https://github.com/mathandevprojects" target="_blank"><i class="fab fa-github"></i> Code</a>
-                                <a href="#" target="_blank"><i class="fas fa-external-link-alt"></i> Live Demo</a>
-                            </div>
+    <!-- About Section -->
+    <section id="about" class="about">
+        <div class="container">
+            <div class="section-title">
+                <h2>About Me</h2>
+            </div>
+            <div class="about-content">
+                <div class="about-img">
+                    <!-- Changed src to local asset -->
+                    <img src="assets/images/about.jpg" alt="About Me">
+                </div>
+                <div class="about-text">
+                    <p>I'm a passionate Full Stack Developer with a strong foundation in web development technologies. I
+                        enjoy building elegant solutions to complex problems and am always eager to learn new
+                        technologies.</p>
+                    <p>With a keen eye for detail and a commitment to writing clean, maintainable code, I strive to
+                        create web applications that not only function flawlessly but also provide an exceptional user
+                        experience.</p>
+                    <ul class="info-list">
+                        <li><i class="fas fa-user"></i> <strong>Full Name:</strong> A. Mathan Kumar</li>
+                        <li><i class="fas fa-map-marker-alt"></i> <strong>Location:</strong> Adambakkam, Chennai</li>
+                        <li><i class="fas fa-phone"></i> <strong>Phone:</strong> +91 7867984298</li>
+                        <li><i class="fas fa-envelope"></i> <strong>Email:</strong> mathank.dev@gmail.com</li>
+                        <li><i class="fas fa-language"></i> <strong>Languages:</strong> English, Tamil</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills" class="skills">
+        <div class="container">
+            <div class="section-title">
+                <h2>My Skills</h2>
+            </div>
+            <div class="skills-grid">
+                <div class="skill-card">
+                    <div class="skill-icon">
+                        <i class="fas fa-code"></i>
+                    </div>
+                    <h3>Languages & Web</h3>
+                    <ul class="skill-list">
+                        <li>PHP</li>
+                        <li>HTML5</li>
+                        <li>CSS3</li>
+                        <li>JavaScript</li>
+                        <li>jQuery</li>
+                    </ul>
+                </div>
+                <div class="skill-card">
+                    <div class="skill-icon">
+                        <i class="fas fa-layer-group"></i>
+                    </div>
+                    <h3>Frameworks & Tools</h3>
+                    <ul class="skill-list">
+                        <li>Laravel</li>
+                        <li>Bootstrap</li>
+                        <li>Vue.js</li>
+                        <li>Ionic</li>
+                        <li>Git</li>
+                    </ul>
+                </div>
+                <div class="skill-card">
+                    <div class="skill-icon">
+                        <i class="fas fa-database"></i>
+                    </div>
+                    <h3>Database</h3>
+                    <ul class="skill-list">
+                        <li>MySQL</li>
+                        <li>Database Design</li>
+                        <li>Query Optimization</li>
+                    </ul>
+                </div>
+                <div class="skill-card">
+                    <div class="skill-icon">
+                        <i class="fas fa-plug"></i>
+                    </div>
+                    <h3>Others</h3>
+                    <ul class="skill-list">
+                        <li>API Integration</li>
+                        <li>AJAX</li>
+                        <li>RESTful Services</li>
+                        <li>WordPress</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Experience Section -->
+    <section id="experience" class="experience">
+        <div class="container">
+            <div class="section-title">
+                <h2>Professional Experience</h2>
+            </div>
+            <div class="timeline">
+                <div class="timeline-item left">
+                    <div class="timeline-content">
+                        <h3>Web Developer</h3>
+                        <span class="date">Apr 2024 – Present</span>
+                        <h4>Boovan Tech Pvt. Ltd. Chennai</h4>
+                        <ul>
+                            <li>Built responsive, feature-rich applications using Laravel, Core PHP, Bootstrap, and
+                                JavaScript.</li>
+                            <li>Maintained MySQL databases for performance, data consistency, and security.</li>
+                            <li>Collaborated with designers, backend teams, and QA to ensure timely delivery.</li>
+                            <li>Implemented clean coding practices, documentation, and conducted regular peer reviews.
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="projects">
+        <div class="container">
+            <div class="section-title">
+                <h2>My Projects</h2>
+            </div>
+            <div class="projects-grid">
+                <div class="project-card">
+                    <div class="project-img">
+                        <i class="fas fa-graduation-cap"></i>
+                    </div>
+                    <div class="project-content">
+                        <h3>City Academy Portal</h3>
+                        <p>Comprehensive Learning Management System (LMS) and enterprise booking portal for managing
+                            student enrollments, course scheduling, tutor management, and financial transactions.</p>
+                        <div class="project-tech">
+                            <span class="tech-tag">PHP 8.1</span>
+                            <span class="tech-tag">Laravel 11</span>
+                            <span class="tech-tag">MySQL</span>
+                            <span class="tech-tag">JavaScript</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="#" class="view-project" data-project="city-academy">View Details <i
+                                    class="fas fa-arrow-right"></i></a>
                         </div>
                     </div>
-                    <div class="project-card">
-                        <img src="https://i.ibb.co/hK4Xs9w/placeholder-project-2.jpg" alt="Project 2">
-                        <div class="project-content">
-                            <h3>Admin Portal</h3>
-                            <p class="project-tech">PHP, Laravel, Vue.js</p>
-                            <p>An internal portal for managing student records, tutor profiles, and generating invoices with advanced filtering and search capabilities.</p>
-                            <div class="project-links">
-                                <a href="#" target="_blank"><i class="fab fa-github"></i> Code</a>
-                                <a href="#" target="_blank"><i class="fas fa-external-link-alt"></i> Live Demo</a>
-                            </div>
+                </div>
+                <div class="project-card">
+                    <div class="project-img">
+                        <i class="fas fa-home"></i>
+                    </div>
+                    <div class="project-content">
+                        <h3>Chennai Rental System (CRS)</h3>
+                        <p>Comprehensive web-based ERP solution designed to streamline and automate the rental
+                            management lifecycle, managing clients, inventory, and financial transactions.</p>
+                        <div class="project-tech">
+                            <span class="tech-tag">PHP 8.2</span>
+                            <span class="tech-tag">Laravel 10</span>
+                            <span class="tech-tag">MySQL</span>
+                            <span class="tech-tag">JavaScript</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="#" class="view-project" data-project="crs">View Details <i
+                                    class="fas fa-arrow-right"></i></a>
                         </div>
                     </div>
-                    <div class="project-card">
-                        <img src="https://i.ibb.co/68v1k2Y/placeholder-project-3.jpg" alt="Project 3">
-                        <div class="project-content">
-                            <h3>Urban Rider App</h3>
-                            <p class="project-tech">Flutter, Google Maps API</p>
-                            <p>A cross-platform mobile application for booking bike rides. Features real-time tracking, fare estimation, and secure payment integration.</p>
-                            <div class="project-links">
-                                <a href="#" target="_blank"><i class="fab fa-github"></i> Code</a>
-                                <a href="#" target="_blank"><i class="fas fa-external-link-alt"></i> Live Demo</a>
-                            </div>
+                </div>
+                <div class="project-card">
+                    <div class="project-img">
+                        <i class="fas fa-book"></i>
+                    </div>
+                    <div class="project-content">
+                        <h3>Madras Academy</h3>
+                        <p>Comprehensive Learning Management System (LMS) and enterprise booking portal for managing
+                            student enrollments, course scheduling, tutor management, and financial transactions.</p>
+                        <div class="project-tech"> <!-- Fixed duplicate description in card -->
+                            <span class="tech-tag">PHP 8.1</span>
+                            <span class="tech-tag">Laravel 11</span>
+                            <span class="tech-tag">MySQL</span>
+                            <span class="tech-tag">AWS S3</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="#" class="view-project" data-project="madras-academy">View Details <i
+                                    class="fas fa-arrow-right"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="project-card">
+                    <div class="project-img">
+                        <i class="fas fa-user-md"></i>
+                    </div>
+                    <div class="project-content">
+                        <h3>Medical Center / Coaching</h3>
+                        <p>WordPress-based platform designed for a Medical Center or Life Coaching business, managing
+                            professional profiles, membership plans, and case studies.</p>
+                        <div class="project-tech">
+                            <span class="tech-tag">WordPress</span>
+                            <span class="tech-tag">PHP</span>
+                            <span class="tech-tag">Elementor</span>
+                            <span class="tech-tag">REST API</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="#" class="view-project" data-project="medical-center">View Details <i
+                                    class="fas fa-arrow-right"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="project-card">
+                    <div class="project-img">
+                        <i class="fas fa-shopping-cart"></i>
+                    </div>
+                    <div class="project-content">
+                        <h3>Sri Senthil Store App</h3>
+                        <p>Cross-platform mobile grocery shopping application using Ionic and Angular, designed to
+                            provide a seamless e-commerce experience on both Android and iOS.</p>
+                        <div class="project-tech">
+                            <span class="tech-tag">Ionic 6</span>
+                            <span class="tech-tag">Angular 14</span>
+                            <span class="tech-tag">Capacitor</span>
+                            <span class="tech-tag">TypeScript</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="#" class="view-project" data-project="sri-senthil">View Details <i
+                                    class="fas fa-arrow-right"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="project-card">
+                    <div class="project-img">
+                        <i class="fas fa-brain"></i>
+                    </div>
+                    <div class="project-content">
+                        <h3>Minderestry</h3>
+                        <p>A comprehensive platform for mindfulness and meditation resources, featuring course management, user profiles, and content delivery system.</p>
+                        <div class="project-tech">
+                            <span class="tech-tag">WordPress</span>
+                            <span class="tech-tag">PHP</span>
+                            <span class="tech-tag">JavaScript</span>
+                            <span class="tech-tag">MySQL</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="https://www.minderestry.com/" target="_blank" class="view-project" data-project="minderestry">View Details <i class="fas fa-arrow-right"></i></a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-img">
+                        <i class="fas fa-coffee"></i>
+                    </div>
+                    <div class="project-content">
+                        <h3>Coffer APL</h3>
+                        <p>A professional coffee business website with e-commerce functionality, showcasing products, managing orders, and providing customer service features.</p>
+                        <div class="project-tech">
+                            <span class="tech-tag">WordPress</span>
+                            <span class="tech-tag">WooCommerce</span>
+                            <span class="tech-tag">PHP</span>
+                            <span class="tech-tag">JavaScript</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="https://cofferapl.com/" target="_blank" class="view-project" data-project="cofferapl">View Details <i class="fas fa-arrow-right"></i></a>
                         </div>
                     </div>
                 </div>
             </div>
-        </section>
+        </div>
+    </section>
 
-        <!-- Experience Section -->
-        <section id="experience" class="experience">
-            <div class="container">
-                <h2 class="section-title">My Experience</h2>
-                <div class="timeline">
-                    <div class="timeline-item">
-                        <h3>Full Stack Developer</h3>
-                        <h4>Tech Solutions Inc.</h4>
-                        <p><em>Oct 2021 - Present</em></p>
-                        <ul>
-                            <li>Developed and maintained multiple client projects using Laravel and Vue.js.</li>
-                            <li>Designed and built RESTful APIs for mobile and web consumption.</li>
-                            <li>Collaborated with UI/UX designers to implement responsive and user-friendly interfaces.</li>
-                        </ul>
-                    </div>
-                    <div class="timeline-item">
-                        <h3>Junior PHP Developer</h3>
-                        <h4>Digital Agency Pro</h4>
-                        <p><em>Jun 2021 - Sep 2021</em></p>
-                        <ul>
-                            <li>Assisted in the development of custom WordPress and Laravel websites.</li>
-                            <li>Performed bug fixes and implemented new features based on client feedback.</li>
-                        </ul>
-                    </div>
+    <!-- Education Section -->
+    <section id="education" class="education">
+        <div class="container">
+            <div class="section-title">
+                <h2>Education</h2>
+            </div>
+            <div class="education-grid">
+                <div class="edu-card">
+                    <h3>Bachelor of Computer Science</h3>
+                    <div class="school">SSM College of Arts and Science, Komarapalayam</div>
+                    <div class="date">2020 – 2023</div>
+                    <div class="grade">CGPA: 7.9</div>
+                </div>
+                <div class="edu-card">
+                    <h3>Higher Secondary Certificate (HSC)</h3>
+                    <div class="school">Government Boys Higher Secondary School, Bhavani</div>
+                    <div class="date">2018 – 2020</div>
+                    <div class="grade"></div>
+                </div>
+                <div class="edu-card">
+                    <h3>Secondary School Leaving Certificate (SSLC)</h3>
+                    <div class="school">Government Boys Higher Secondary School, Bhavani</div>
+                    <div class="date">2017 – 2018</div>
+                    <div class="grade"></div>
                 </div>
             </div>
-        </section>
+        </div>
+    </section>
 
-        <!-- Contact Section -->
-        <section id="contact" class="contact">
-            <div class="container">
-                <h2 class="section-title">Get In Touch</h2>
-                <p>I am currently open for new opportunities. If you have a project in mind or would like to chat, feel free to send me a message!</p>
-                <!-- Replace 'your-form-id' with your actual Formspree ID -->
-                <form action="https://formspree.io/f/your-form-id" method="POST" class="contact-form">
-                    <input type="text" name="name" placeholder="Your Name" required>
-                    <input type="email" name="email" placeholder="Your Email" required>
-                    <textarea name="message" rows="7" placeholder="Your Message" required></textarea>
-                    <button type="submit" class="btn">Send Message</button>
-                </form>
+    <!-- Contact Section -->
+    <section id="contact" class="contact">
+        <div class="container">
+            <div class="section-title">
+                <h2 style="color: white;">Contact Me</h2>
             </div>
-        </section>
-    </main>
+            <div class="contact-content">
+                <div class="contact-info">
+                    <h3>Let's Connect</h3>
+                    <p>I'm always interested in hearing about new opportunities and exciting projects. Feel free to
+                        reach out if you'd like to connect!</p>
+                    <ul class="contact-list">
+                        <li><i class="fas fa-map-marker-alt"></i> 207, Kaltholizhalar 1st Street, Bhavani, Erode -
+                            638301</li>
+                        <li><i class="fas fa-phone"></i> +91 7867984298</li>
+                        <li><i class="fas fa-envelope"></i> mathank.dev@gmail.com</li>
+                    </ul>
+                </div>
+                <div class="contact-form">
+                    <form id="contactForm">
+                        <div class="form-group">
+                            <label for="name">Your Name</label>
+                            <input type="text" id="name" name="name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Your Email</label>
+                            <input type="email" id="email" name="email" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="message">Message</label>
+                            <textarea id="message" name="message" required></textarea>
+                        </div>
+                        <button type="submit" class="btn-submit">Send Message</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
 
     <!-- Footer -->
-    <footer class="main-footer">
+    <footer>
         <div class="container">
             <div class="social-links">
-                <a href="https://github.com/mathandevprojects" target="_blank"><i class="fab fa-github"></i></a>
-                <!-- Add your LinkedIn profile link here -->
-                <a href="#" target="_blank"><i class="fab fa-linkedin"></i></a>
+                <a href="#"><i class="fab fa-linkedin"></i></a>
+                <a href="#"><i class="fab fa-github"></i></a>
+                <a href="#"><i class="fab fa-twitter"></i></a>
+                <a href="#"><i class="fab fa-instagram"></i></a>
             </div>
-            <p>&copy; 2024 Mathan Kumar. All Rights Reserved.</p>
+            <p>&copy; 2024 Mathan Kumar A. All Rights Reserved.</p>
         </div>
     </footer>
 
-    <script>
-        // Simple Mobile Menu Toggle
-        const hamburger = document.getElementById('hamburger');
-        const navLinks = document.getElementById('nav-links');
+    <!-- Scroll to Top Button -->
+    <div class="scroll-top">
+        <i class="fas fa-arrow-up"></i>
+    </div>
 
-        hamburger.addEventListener('click', () => {
-            navLinks.classList.toggle('active');
-        });
+    <!-- Project Details Modal -->
+    <div id="projectModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2 class="modal-title" id="modalTitle">Project Title</h2>
+            <p id="modalDescription">Project description</p>
+            <div class="modal-tech" id="modalTech"></div>
+            <div class="modal-features">
+                <h3>Key Features</h3>
+                <ul id="modalFeatures"></ul>
+            </div>
+        </div>
+    </div>
 
-        // Close mobile menu when a link is clicked
-        document.querySelectorAll('.main-nav a').forEach(link => {
-            link.addEventListener('click', () => {
-                navLinks.classList.remove('active');
-            });
-        });
-    </script>
-
+    <!-- Main JavaScript -->
+    <script src="assets/js/main.js"></script>
 </body>
+
 </html>
